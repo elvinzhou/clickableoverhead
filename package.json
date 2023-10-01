@@ -1,28 +1,20 @@
 {
-  "name": "ClickableOverhead",
-  "version": "0.0.1",
-  "description": "Clickable Overhead Panel for Aircraft",
-  "main": "index.js",
+  "name": "clickableoverhead",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd client && npm run start",
-    "server": "nodemon index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "node index.js"
-  },
-  "keywords": [],
-  "author": "Elvin Zhou",
-  "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^8.2.1",
-    "dotenv": "^16.3.1",
-    "nodemon": "^3.0.1",
-    "prisma": "^5.2.0"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.3.1",
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3"
+    "react": "latest",
+    "react-dom": "latest",
+    "next": "latest"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-next": "latest"
   }
 }
