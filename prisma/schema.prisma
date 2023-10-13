@@ -6,12 +6,25 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url  	= env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider = "sqlite"
+  url  	= "file:./dev.db"
 }
 
-model tbv {
+model versions {
   id Int @id @default(autoincrement())
   tbversion String
+  rversion String
+  url String
+}
+
+model aircraft {
+  id Int @id @default(autoincrement())
+  msn Int @unique
+  tail Int @unique
+}
+
+model switches {
+  id Int @id @default(autoincrement())
+  name String?
+  atareference String
 }
