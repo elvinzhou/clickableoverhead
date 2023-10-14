@@ -25,6 +25,11 @@ model aircraft {
 
 model switches {
   id Int @id @default(autoincrement())
-  name String?
+  name String
   atareference String
+  equipnum  String?
+  cmm      String?
+  switchdesc  String?
+  legend    String?
+  effectivity String?
 }
