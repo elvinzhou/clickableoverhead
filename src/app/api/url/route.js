@@ -8,7 +8,7 @@ export async function GET(request){
     //Does 38987421 ever change? What does it mean? Make it rversion then.
     const tail = request.nextUrl.searchParams.get('tail');
     const switchid = request.nextUrl.searchParams.get('switchid');
-    const [versions, msn, atareference] = await Promise.all(prisma.versions.findFirst(),prisma.aircraft.findUnique({
+    const [versions, msn, atareference] = await Promise.all([prisma.versions.findFirst(),prisma.aircraft.findUnique({
         where:{
             tail: tail
         },
@@ -22,7 +22,7 @@ export async function GET(request){
         select:{
             atareference:true
         }
-    }));
+    })]);
     const url = versions.url + "/" + versions.tbversion + "/ToolboxRemote.html#/AIPC/bid/" + versions.rversion + "/data/k" + atareference + "/ap/" + msn;
     return Response.redirect(url);
 }

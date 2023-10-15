@@ -21,6 +21,7 @@ model aircraft {
   id Int @id @default(autoincrement())
   msn Int @unique
   tail Int @unique
+  fleet String
 }
 
 model switches {

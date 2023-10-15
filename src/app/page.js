@@ -1,11 +1,14 @@
-import Image from 'next/image';
-import t7overhead from "../../public/777overhead.svg";
+import { PrismaClient } from "@prisma/client";
+import Home from "./home";
 
-export default function Home() {
+const prisma = new PrismaClient();
+
+export default async function App() {
+
+  const aircraft = await prisma.aircraft.findMany();
+  const aircraftlist = aircraft.map(item => item.tail);
+
   return (
-    <Image
-    priority
-    src={t7overhead}
-    />
+    <Home aircraft={aircraft} aircraftlist={aircraftlist} />
   )
 }
