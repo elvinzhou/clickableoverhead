@@ -3,21 +3,29 @@ import { prisma } from "@/app/prismaclient";
 
 export async function POST(request){
     const data = await request.json();
-    const ret = await Promise.all(data.map(aircraft => {
-        const tail = parseInt(aircraft.aircraft_id);
-        const msn = parseInt(aircraft.manufacture_serial_number.slice(0,6));
-        return prisma.aircraft.upsert({
+    const ret = await Promise.all(data.map(item => {
+        return prisma.switches.upsert({
             where:{
-                tail:tail
+                switchid:item.switchid,
+                atareference:item.atareference
             },
             update:{
-                msn:msn,
-                fleet:aircraft.fmis_fleet_type_code
+                switchdesc:item.switchdesc,
+                legend:item.legend,
+                equipnum:item.equipnum,
+                cmm:item.cmm,
+                panel:item.panel,
+                effectivity:item.effectivity,                
             },
             create:{
-                tail:tail,
-                msn:msn,
-                fleet:aircraft.fmis_fleet_type_code
+                switchdesc:item.switchdesc,
+                legend:item.legend,
+                equipnum:item.equipnum,
+                cmm:item.cmm,
+                panel:item.panel,
+                effectivity:item.effectivity,
+                switchid:item.switchid,
+                atareference:item.atareference
             }
         });
     }))

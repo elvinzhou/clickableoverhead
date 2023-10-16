@@ -5,6 +5,12 @@ import Papa from 'papaparse';
 export default function Dashboard() {
     const fileupload = async(file,url,message) => {
         const config = {
+            header:true,
+            transformHeader:(header) => {
+                return header.map(head => {
+                    return head.replaceAll(" ","").toLowerCase();
+                })
+            }
             complete: async function(results){
                 const res = await fetch(url,{
                     method:"POST",

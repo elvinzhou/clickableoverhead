@@ -22,15 +22,18 @@ model aircraft {
   msn Int @unique
   tail Int @unique
   fleet String
+  cec Int
 }
 
 model switches {
   id Int @id @default(autoincrement())
-  name String
+  switchid String
   atareference String
   equipnum  String?
   cmm      String?
   switchdesc  String?
   legend    String?
   effectivity String?
+
+  @@unique([switchid,atareference])
 }

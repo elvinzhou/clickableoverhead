@@ -5,19 +5,21 @@ export async function POST(request){
     const data = await request.json();
     const ret = await Promise.all(data.map(aircraft => {
         const tail = parseInt(aircraft.aircraft_id);
-        const msn = parseInt(aircraft.manufacture_serial_number.slice(0,6));
+        const msn = parseInt(aircraft.MSN);
         return prisma.aircraft.upsert({
             where:{
                 tail:tail
             },
             update:{
                 msn:msn,
-                fleet:aircraft.fmis_fleet_type_code
+                fleet:aircraft.fmis_fleet_type_code,
+                cec:aircraft.CEC
             },
             create:{
                 tail:tail,
                 msn:msn,
-                fleet:aircraft.fmis_fleet_type_code
+                fleet:aircraft.fmis_fleet_type_code,
+                cec:aircraft.CEC
             }
         });
     }))
