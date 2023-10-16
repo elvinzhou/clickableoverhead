@@ -1,5 +1,5 @@
 'use client'
-import T7overhead from "../../assets/777overhead.svg";
+import T7overhead from "../../../assets/777overhead.svg";
 import React, {useEffect, useState} from 'react';
 
 export default function TripleSeven() {

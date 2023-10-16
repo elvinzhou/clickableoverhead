@@ -1,6 +1,4 @@
-import { PrismaClient} from ".prisma/client"
-
-const prisma = new PrismaClient();
+import { prisma } from "@/app/prismaclient";
 
 export async function GET(request){
     //Need to recreate the link to hack together deep linking.

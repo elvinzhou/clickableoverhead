@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import Home from "./home";
+import { prisma } from "@/app/prismaclient";
 
-const prisma = new PrismaClient();
+
 
 export default async function App() {
 
