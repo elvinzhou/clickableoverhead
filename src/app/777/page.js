@@ -13,10 +13,10 @@ export default function TripleSeven() {
   const { aircraft } = useContext(AircraftContext);
   const [opened, { open, close }] = useDisclosure(false);
   const [rows, setRows] = useState();
-  if (!aircraft.tail){
-    router.push('/');
-  }
   useEffect(() => {
+    if (!aircraft.tail){
+      router.push('/');
+    }
     const svgElement = document.getElementById('t7overhead')
     console.log(svgElement);
     if (svgElement) {
