@@ -2,10 +2,10 @@
 
 const { PrismaPlugin } = require('@prisma/nextjs-monorepo-workaround-plugin')
 const nextConfig = {
-    if (isServer) {
-        config.plugins = [...config.plugins, new PrismaPlugin()]
-      }
-    webpack:(config) => {
+    webpack:(config, {isServer}) => {
+        if (isServer) {
+            config.plugins = [...config.plugins, new PrismaPlugin()]
+          }
         config.module.rules.push({
             test: /\.svg$/,
             use: [{loader:'@svgr/webpack',options:{svgoCOnfig:'./svgo.config.js'}}],
