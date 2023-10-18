@@ -32,7 +32,7 @@ export default function TripleSeven() {
             <Table.Td>{item.cmm}</Table.Td>
             <Table.Td>{item.effectivity}</Table.Td>
             <Table.Td>{item.switchdesc}</Table.Td>
-            <Table.Td><ActionIcon component="a" href={item.url}><IconExternalLink /></ActionIcon></Table.Td>
+            <Table.Td><ActionIcon component="a" target="_blank" href={item.url}><IconExternalLink /></ActionIcon></Table.Td>
           </Table.Tr>
         )
         );
