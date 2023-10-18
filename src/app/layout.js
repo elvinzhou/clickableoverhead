@@ -1,7 +1,8 @@
 import './globals.css'
+import '@mantine/notifications/styles.css';
 import { Inter } from 'next/font/google'
 import '@mantine/core/styles.css';
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+import { ColorSchemeScript } from '@mantine/core';
 import { Providers } from './providers';
 import { Notifications } from '@mantine/notifications';
 
@@ -21,9 +22,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <ColorSchemeScript />
-        <Notifications />
       </head>
-      <body className={inter.className}><MantineProvider><Providers>{children}</Providers></MantineProvider></body>
+      <body className={inter.className}><Providers><Notifications />
+{children}</Providers></body>
     </html>
   )
 }

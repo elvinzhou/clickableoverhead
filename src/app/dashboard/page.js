@@ -1,16 +1,19 @@
+'use client'
 import { FileButton, Button, Center, Group, Paper, Text, Stack } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+import { useState } from 'react';
 import Papa from 'papaparse';
 
 export default function Dashboard() {
+    const [aircraftsubmitting, setASubmit] = useState(false);
+    const [switchsubmitting, setSwitchSubmit] = useState(false);
     const fileupload = async(file,url,message) => {
         const config = {
             header:true,
-            transformHeader:(header) => {
-                return header.map(head => {
-                    return head.replaceAll(" ","").toLowerCase();
-                })
-            }
+            skipEmptyLines:true,
+            transformHeader:function (header) {
+                    return header.replaceAll(" ","").toLowerCase();
+            },
             complete: async function(results){
                 const res = await fetch(url,{
                     method:"POST",
@@ -20,6 +23,10 @@ export default function Dashboard() {
                     body:JSON.stringify(results)
                 })
                 if (res.ok){
+                    const resdata = await res.json();
+                    console.log(resdata);
+                    setASubmit(false);
+                    setSwitchSubmit(false);
                     notifications.show({
                         title:"Upload Successful",
                         message:message
@@ -35,15 +42,17 @@ export default function Dashboard() {
             <Center>
                 <Paper w="20%" h="100%" shadow="md" radius="lg" withBorder p="xl">
                     <Text>Upload Aircraft List from Palantir:</Text>
-                    <Group justify="center">
-                        <FileButton onChange={(file) => fileupload(file,'/api/aircraft',"Aircraft List will be refreshed momentarily...")}>
-                            {(props) => <Button {...props}>Upload Aircraft List</Button>}
-                        </FileButton>
-                        <FileButton onChange={(file) => fileupload(file,'/api/switches',"Switches have been added to the database")}>
-                            {(props) => <Button {...props}>Upload Switch List</Button>}
+                    <Group mt={10} justify="center">
+                        <FileButton onChange={(file) => {fileupload(file,'/api/aircraft',"Aircraft List will be refreshed momentarily...");setASubmit(true)}}>
+                            {(props) => <Button loading={aircraftsubmitting} {...props}>Upload Aircraft List</Button>}
                         </FileButton>
                     </Group>
-
+                    <Text mt={10}>Upload csv of switches: </Text>
+                    <Group mt={10} justify='center'>
+                        <FileButton onChange={(file) => {fileupload(file,'/api/switches',"Switches have been added to the database");setSwitchSubmit(true)}}>
+                            {(props) => <Button loading={switchsubmitting} {...props}>Upload Switch List</Button>}
+                        </FileButton>
+                    </Group>
                 </Paper>
             </Center>
         </Stack>
