@@ -22,7 +22,6 @@
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@prisma/nextjs-monorepo-workaround-plugin": "^5.4.2",
     "@svgr/webpack": "^8.1.0",
     "eslint": "latest",
     "eslint-config-next": "latest",
