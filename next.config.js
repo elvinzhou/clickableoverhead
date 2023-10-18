@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-    experimental: {
-        serverComponentsExternalPackages: ['prisma','@prisma/client'],
-      },    
     webpack:(config) => {
         config.module.rules.push({
             test: /\.svg$/,

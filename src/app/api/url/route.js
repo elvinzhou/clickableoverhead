@@ -1,6 +1,4 @@
-import { PrismaClient} from ".prisma/client"
-const prisma = new PrismaClient();
-//Done this way for Vercel serverless deployment. Should revert back to import from ./prismaclient if we go back to node hosting.
+import { prisma } from "../../prismaclient";
 
 export async function GET(request){
     //Need to recreate the link to hack together deep linking.
