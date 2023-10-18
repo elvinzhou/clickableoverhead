@@ -1,5 +1,5 @@
 import Home from "./home";
-import { prisma } from "@/app/prismaclient";
+import { prisma } from "./prismaclient";
 
 
 
